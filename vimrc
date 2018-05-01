@@ -120,9 +120,16 @@ map <leader>so :source $MYVIMRC<cr>
 "================================
 call plug#begin('~/.vim/plugged')
 
+" 增强功能
+Plug 'vim-airline/vim-airline'        " 状态栏增强
+Plug 'vim-airline/vim-airline-themes' " 状态栏主题
+Plug 'Yggdroot/LeaderF'               " 模糊查找
+
 " colorscheme
 Plug 'soft-aesthetic/soft-era-vim'
-Plug 'liuchengxu/space-vim-dark'
+" Plug 'liuchengxu/space-vim-dark'
+Plug 'logico-dev/typewriter'
+
 
 call plug#end()
 
@@ -132,4 +139,5 @@ call plug#end()
 "================================
 syntax enable
 "colorscheme soft-era
-colorscheme space-vim-dark
+"colorscheme space-vim-dark
+"colorscheme typewriter

@@ -102,17 +102,6 @@ autocmd InsertEnter * :set norelativenumber number
 " 普通模式使用相对行号
 autocmd InsertLeave * :set relativenumber number
 
-" 分屏跳转
-map <c-j> <c-w>j
-map <c-k> <c-w>k
-map <c-h> <c-w>h
-map <c-l> <c-w>l
-
-" 自动加载vimrc
-autocmd! bufwritepost vimrc source $MYVIMRC
-
-map <leader>config :e! $MYVIMRC<cr>
-map <leader>so :source $MYVIMRC<cr>
 
 
 "================================
@@ -124,10 +113,11 @@ call plug#begin('~/.vim/plugged')
 Plug 'vim-airline/vim-airline'        " 状态栏增强
 Plug 'vim-airline/vim-airline-themes' " 状态栏主题
 Plug 'Yggdroot/LeaderF'               " 模糊查找
+Plug 'raimondi/delimitmate'           " 括号补全
 
 " colorscheme
 Plug 'soft-aesthetic/soft-era-vim'
-" Plug 'liuchengxu/space-vim-dark'
+Plug 'liuchengxu/space-vim-dark'
 Plug 'logico-dev/typewriter'
 
 
@@ -141,3 +131,23 @@ syntax enable
 "colorscheme soft-era
 "colorscheme space-vim-dark
 "colorscheme typewriter
+
+
+"================================
+" key map
+"================================
+
+" 分屏跳转
+map <c-j> <c-w>j
+map <c-k> <c-w>k
+map <c-h> <c-w>h
+map <c-l> <c-w>l
+
+" 自动加载vimrc
+autocmd! bufwritepost vimrc source $MYVIMRC
+
+map <leader>config :e! $MYVIMRC<cr>
+map <leader>so :source $MYVIMRC<cr>
+
+" 
+nmap <space> viwg~

@@ -124,6 +124,7 @@ call plug#begin('~/.vim/plugged')
 Plug 'vim-airline/vim-airline'        " 状态栏增强
 Plug 'vim-airline/vim-airline-themes' " 状态栏主题
 Plug 'Yggdroot/LeaderF'               " 模糊查找
+Plug 'Yggdroot/indentLine'            " 显示缩进层级
 
 " colorscheme
 Plug 'soft-aesthetic/soft-era-vim'
@@ -141,3 +142,10 @@ syntax enable
 "colorscheme soft-era
 "colorscheme space-vim-dark
 "colorscheme typewriter
+
+
+
+" 加载 .vimrc.local 
+if filereadable(expand('~/.vimrc.local'))
+    source ~/.vimrc.local
+end

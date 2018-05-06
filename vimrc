@@ -110,11 +110,13 @@ autocmd InsertLeave * :set relativenumber number
 call plug#begin('~/.vim/plugged')
 
 " 增强功能
-Plug 'vim-airline/vim-airline'        " 状态栏增强
-Plug 'vim-airline/vim-airline-themes' " 状态栏主题
-Plug 'Yggdroot/LeaderF'               " 模糊查找
-Plug 'Yggdroot/indentLine'            " 显示缩进层级
-Plug 'raimondi/delimitmate'           " 括号补全
+Plug 'vim-airline/vim-airline'          " 状态栏增强
+Plug 'vim-airline/vim-airline-themes'   " 状态栏主题
+Plug 'Yggdroot/LeaderF'                 " 模糊查找
+Plug 'Yggdroot/indentLine'              " 显示缩进层级
+Plug 'raimondi/delimitmate'             " 括号补全
+Plug 'octol/vim-cpp-enhanced-highlight' " 高亮 cpp 
+Plug 'scrooloose/nerdtree'              " 树状目录
 
 " colorscheme
 Plug 'soft-aesthetic/soft-era-vim'
@@ -124,6 +126,10 @@ Plug 'logico-dev/typewriter'
 
 call plug#end()
 
+"================================
+" 插件设置
+"================================
+map <leader>tt :NERDTreeToggle<cr>
 
 "================================
 " 主题

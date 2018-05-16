@@ -35,9 +35,9 @@ set mouse-=a
 set title
 
 " 设置gui相关的东西
-""set guifont=DejaVu\ Sans\ Mono\ 16
 " 设置字体
-set guifont=Courier\ 10\ Pitch\ 20
+set guifont=DejaVu\ Sans\ Mono\ 24
+" set guifont=Courier\ 10\ Pitch\ 20
 set guioptions-=m
 set guioptions-=T
 
@@ -122,6 +122,7 @@ Plug 'scrooloose/nerdtree'              " 树状目录
 Plug 'soft-aesthetic/soft-era-vim'
 Plug 'liuchengxu/space-vim-dark'
 Plug 'logico-dev/typewriter'
+Plug 'rakr/vim-one'
 
 
 call plug#end()
@@ -138,6 +139,7 @@ syntax enable
 "colorscheme soft-era
 "colorscheme space-vim-dark
 "colorscheme typewriter
+"colorscheme one
 
 
 "================================

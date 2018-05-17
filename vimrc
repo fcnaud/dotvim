@@ -35,9 +35,9 @@ set mouse-=a
 set title
 
 " 设置gui相关的东西
-""set guifont=DejaVu\ Sans\ Mono\ 16
 " 设置字体
-set guifont=Courier\ 10\ Pitch\ 20
+set guifont=DejaVu\ Sans\ Mono\ 24
+" set guifont=Courier\ 10\ Pitch\ 20
 set guioptions-=m
 set guioptions-=T
 
@@ -114,16 +114,19 @@ set list
 call plug#begin('~/.vim/plugged')
 
 " 增强功能
-Plug 'vim-airline/vim-airline'        " 状态栏增强
-Plug 'vim-airline/vim-airline-themes' " 状态栏主题
-Plug 'Yggdroot/LeaderF'               " 模糊查找
-Plug 'Yggdroot/indentLine'            " 显示缩进层级
-Plug 'raimondi/delimitmate'           " 括号补全
+Plug 'vim-airline/vim-airline'          " 状态栏增强
+Plug 'vim-airline/vim-airline-themes'   " 状态栏主题
+Plug 'Yggdroot/LeaderF'                 " 模糊查找
+Plug 'Yggdroot/indentLine'              " 显示缩进层级
+Plug 'raimondi/delimitmate'             " 括号补全
+Plug 'octol/vim-cpp-enhanced-highlight' " 高亮 cpp 
+Plug 'scrooloose/nerdtree'              " 树状目录
 
 " colorscheme
 Plug 'soft-aesthetic/soft-era-vim'
 Plug 'liuchengxu/space-vim-dark'
 Plug 'logico-dev/typewriter'
+Plug 'rakr/vim-one'
 
 
 call plug#end()
@@ -133,6 +136,7 @@ call plug#end()
 "================================
 " '┆'
 let g:indentLine_char = '┆'
+map <leader>tt :NERDTreeToggle<cr>
 
 "================================
 " 主题
@@ -141,6 +145,7 @@ syntax enable
 "colorscheme soft-era
 "colorscheme space-vim-dark
 "colorscheme typewriter
+"colorscheme one
 
 
 "================================

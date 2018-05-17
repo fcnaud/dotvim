@@ -103,6 +103,10 @@ autocmd InsertEnter * :set norelativenumber number
 autocmd InsertLeave * :set relativenumber number
 
 
+" 不可见字符
+set listchars=tab:>-,trail:∙
+highlight SpecialKey ctermfg=6
+set list    
 
 "================================
 " 插件
@@ -124,6 +128,11 @@ Plug 'logico-dev/typewriter'
 
 call plug#end()
 
+"================================
+" 插件设置
+"================================
+" '┆'
+let g:indentLine_char = '┆'
 
 "================================
 " 主题
@@ -137,6 +146,9 @@ syntax enable
 "================================
 " key map
 "================================
+
+" F1 
+noremap <F1> <nop>
 
 " 分屏跳转
 map <c-j> <c-w>j
@@ -153,7 +165,12 @@ map <leader>so :source $MYVIMRC<cr>
 " 
 nmap <space> viwg~
 
+
+
+
 " 加载 .vimrc.local 
 if filereadable(expand('~/.vimrc.local'))
     source ~/.vimrc.local
 end
+
+

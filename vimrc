@@ -119,7 +119,6 @@ Plug 'vim-airline/vim-airline-themes'   " 状态栏主题
 Plug 'Yggdroot/LeaderF'                 " 模糊查找
 Plug 'Yggdroot/indentLine'              " 显示缩进层级
 Plug 'raimondi/delimitmate'             " 括号补全
-Plug 'octol/vim-cpp-enhanced-highlight' " 高亮 cpp 
 Plug 'scrooloose/nerdtree'              " 树状目录
 
 " colorscheme
@@ -127,6 +126,9 @@ Plug 'soft-aesthetic/soft-era-vim'
 Plug 'liuchengxu/space-vim-dark'
 Plug 'logico-dev/typewriter'
 Plug 'rakr/vim-one'
+
+" c/c++
+Plug 'octol/vim-cpp-enhanced-highlight' " 高亮 cpp 
 
 
 call plug#end()
@@ -156,19 +158,19 @@ syntax enable
 noremap <F1> <nop>
 
 " 分屏跳转
-map <c-j> <c-w>j
-map <c-k> <c-w>k
-map <c-h> <c-w>h
-map <c-l> <c-w>l
+noremap <c-j> <c-w>j
+noremap <c-k> <c-w>k
+noremap <c-h> <c-w>h
+noremap <c-l> <c-w>l
 
 " 自动加载vimrc
 autocmd! bufwritepost vimrc source $MYVIMRC
 
-map <leader>config :e! $MYVIMRC<cr>
-map <leader>so :source $MYVIMRC<cr>
+noremap <leader>config :e! $MYVIMRC<cr>
+noremap <leader>so :source $MYVIMRC<cr>
 
 " 
-nmap <space> viwg~
+nnoremap <space> viwg~
 
 
 

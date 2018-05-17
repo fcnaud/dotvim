@@ -110,8 +110,9 @@ autocmd InsertLeave * :set relativenumber number
 call plug#begin('~/.vim/plugged')
 
 " 增强功能
-Plug 'vim-airline/vim-airline'          " 状态栏增强
-Plug 'vim-airline/vim-airline-themes'   " 状态栏主题
+Plug 'itchyny/lightline.vim'            " 状态栏
+" Plug 'vim-airline/vim-airline'          " 状态栏增强
+" Plug 'vim-airline/vim-airline-themes'   " 状态栏主题
 Plug 'Yggdroot/LeaderF'                 " 模糊查找
 Plug 'Yggdroot/indentLine'              " 显示缩进层级
 Plug 'raimondi/delimitmate'             " 括号补全

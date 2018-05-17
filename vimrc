@@ -103,6 +103,10 @@ autocmd InsertEnter * :set norelativenumber number
 autocmd InsertLeave * :set relativenumber number
 
 
+" 不可见字符
+set listchars=tab:>-,trail:∙
+highlight SpecialKey ctermfg=6
+set list    
 
 "================================
 " 插件
@@ -116,7 +120,6 @@ Plug 'itchyny/lightline.vim'            " 状态栏
 Plug 'Yggdroot/LeaderF'                 " 模糊查找
 Plug 'Yggdroot/indentLine'              " 显示缩进层级
 Plug 'raimondi/delimitmate'             " 括号补全
-Plug 'octol/vim-cpp-enhanced-highlight' " 高亮 cpp 
 Plug 'scrooloose/nerdtree'              " 树状目录
 
 " colorscheme
@@ -125,12 +128,17 @@ Plug 'liuchengxu/space-vim-dark'
 Plug 'logico-dev/typewriter'
 Plug 'rakr/vim-one'
 
+" c/c++
+Plug 'octol/vim-cpp-enhanced-highlight' " 高亮 cpp 
+
 
 call plug#end()
 
 "================================
 " 插件设置
 "================================
+" '┆'
+let g:indentLine_char = '┆'
 map <leader>tt :NERDTreeToggle<cr>
 
 "================================
@@ -147,22 +155,30 @@ syntax enable
 " key map
 "================================
 
+" F1 
+noremap <F1> <nop>
+
 " 分屏跳转
-map <c-j> <c-w>j
-map <c-k> <c-w>k
-map <c-h> <c-w>h
-map <c-l> <c-w>l
+noremap <c-j> <c-w>j
+noremap <c-k> <c-w>k
+noremap <c-h> <c-w>h
+noremap <c-l> <c-w>l
 
 " 自动加载vimrc
 autocmd! bufwritepost vimrc source $MYVIMRC
 
-map <leader>config :e! $MYVIMRC<cr>
-map <leader>so :source $MYVIMRC<cr>
+noremap <leader>config :e! $MYVIMRC<cr>
+noremap <leader>so :source $MYVIMRC<cr>
 
 " 
-nmap <space> viwg~
+nnoremap <space> viwg~
+
+
+
 
 " 加载 .vimrc.local 
 if filereadable(expand('~/.vimrc.local'))
     source ~/.vimrc.local
 end
+
+

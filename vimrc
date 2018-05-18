@@ -121,6 +121,7 @@ Plug 'Yggdroot/LeaderF'                 " 模糊查找
 Plug 'Yggdroot/indentLine'              " 显示缩进层级
 Plug 'raimondi/delimitmate'             " 括号补全
 Plug 'scrooloose/nerdtree'              " 树状目录
+Plug 'w0rp/ale'                         " lint
 
 " colorscheme
 Plug 'soft-aesthetic/soft-era-vim'

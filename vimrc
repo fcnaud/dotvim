@@ -1,4 +1,3 @@
-
 " 修改leader键
 let mapleader = ',' 
 " 开启语法高亮
@@ -55,7 +54,7 @@ set laststatus=2
 " 开启行号显示
 set number
 " 取消换行
-" set nowrap
+set nowrap
 " 括号配对情况
 set showmatch
 
@@ -106,10 +105,10 @@ autocmd InsertLeave * :set relativenumber number
 " 不可见字符
 set listchars=tab:>-,trail:∙
 highlight SpecialKey ctermfg=6
-set list    
+set list
 
 "================================
-" 插件
+" 插件 PLUG
 "================================
 call plug#begin('~/.vim/plugged')
 
@@ -120,8 +119,10 @@ Plug 'itchyny/lightline.vim'            " 状态栏
 Plug 'Yggdroot/LeaderF'                 " 模糊查找
 Plug 'Yggdroot/indentLine'              " 显示缩进层级
 Plug 'raimondi/delimitmate'             " 括号补全
+Plug 'luochen1990/rainbow'              " 括号高亮
 Plug 'scrooloose/nerdtree'              " 树状目录
-Plug 'w0rp/ale'                         " lint
+Plug 'w0rp/ale'                         " 动态检查
+Plug 'ludovicchabant/vim-gutentags'     " 自动生成tags
 
 " colorscheme
 Plug 'soft-aesthetic/soft-era-vim'
@@ -138,9 +139,60 @@ call plug#end()
 "================================
 " 插件设置
 "================================
+"----------------
+" delimitmate
+"----------------
 " '┆'
 let g:indentLine_char = '┆'
 map <leader>tt :NERDTreeToggle<cr>
+
+"----------------
+" tags
+"----------------
+" 设置 tags 查找路径
+set tags=./.tags;,.tags
+
+" gutentags 搜索工程目录的标志，碰到这些文件/目录名就停止向上一级目录递归
+let g:gutentags_project_root = ['.root', '.svn', '.git', '.hg', '.project']
+
+" 所生成的数据文件的名称
+let g:gutentags_ctags_tagfile = '.tags'
+
+" 将自动生成的 tags 文件全部放入 ~/.cache/tags 目录中，避免污染工程目录
+let s:vim_tags = expand('~/.cache/tags')
+let g:gutentags_cache_dir = s:vim_tags
+
+" 配置 ctags 的参数
+let g:gutentags_ctags_extra_args = ['--fields=+niazS', '--extra=+q']
+let g:gutentags_ctags_extra_args += ['--c++-kinds=+px']
+let g:gutentags_ctags_extra_args += ['--c-kinds=+px']
+
+" 检测 ~/.cache/tags 不存在就新建
+if !isdirectory(s:vim_tags)
+   silent! call mkdir(s:vim_tags, 'p')
+endif
+
+"----------------
+"- rainbow
+"----------------
+let g:rainbow_active=1
+
+"----------------
+"- ale
+"----------------
+"let g:ale_linters = {
+"\  'c':['cppcheck'],
+"\}
+" 始终显示提示侧栏
+let g:ale_sign_column_always=1
+" 高亮错误地点
+let g:ale_set_highlights=1
+" 自定义error和warning图标
+" 😢😡
+let g:ale_sign_error='✗'
+let g:ale_sign_warning='?'
+nmap sp <Plug>(ale_previous_wrap)
+nmap sn <Plug>(ale_next_wrap)
 
 "================================
 " 主题

@@ -5,6 +5,11 @@ syntax on
 " 开启文件类型检测
 filetype plugin indent on
 
+let g:vimrcroot        = fnamemodify(resolve(expand('<sfile>:p')), ':h') . "/"
+let g:file_vimrc       = g:vimrcroot . 'vimrc'
+let g:file_vimrc_plug  = g:vimrcroot . 'vimrc.plug'
+let g:file_vimrc_local = $HOME . '/.vimrc.local'
+let load_plug = 0
 
 "================================
 " 基础设置
@@ -117,130 +122,6 @@ hi LineNr  ctermbg=NONE guibg=NONE
 hi SignColumn ctermbg=NONE guibg=NONE
 
 "================================
-" 插件 PLUG
-"================================
-call plug#begin('~/.vim/plugged')
-
-" 增强功能
-Plug 'itchyny/lightline.vim'            " 状态栏
-" Plug 'vim-airline/vim-airline'        " 状态栏增强
-" Plug 'vim-airline/vim-airline-themes' " 状态栏主题
-Plug 'Yggdroot/LeaderF'                 " 模糊查找
-Plug 'Yggdroot/indentLine'              " 显示缩进层级
-Plug 'raimondi/delimitmate'             " 括号补全
-Plug 'luochen1990/rainbow'              " 括号高亮
-Plug 'scrooloose/nerdtree'              " 树状目录
-Plug 'w0rp/ale'                         " 动态检查
-Plug 'ludovicchabant/vim-gutentags'     " 自动生成tags
-"Plug 'mhinz/vim-signify'               " 显示 diff 支持多种版本库
-Plug 'airblade/vim-gitgutter'           " 只支持 git
-Plug 'ryanoasis/vim-devicons'           " vim dev icons
-Plug 'valloric/youcompleteme'           " 自动补全
-Plug 'tpope/vim-fugitive'               " git
-
-" colorscheme
-Plug 'soft-aesthetic/soft-era-vim'
-Plug 'liuchengxu/space-vim-dark'
-Plug 'logico-dev/typewriter'
-Plug 'rakr/vim-one'
-
-" c/c++
-Plug 'octol/vim-cpp-enhanced-highlight' " 高亮 cpp 
-
-
-call plug#end()
-
-"================================
-" 插件设置
-"================================
-"----------------
-" delimitmate
-"----------------
-" '┆'
-let g:indentLine_char = '┆'
-map <leader>tt :NERDTreeToggle<cr>
-
-"----------------
-" tags
-"----------------
-" 设置 tags 查找路径
-set tags=./.tags;,.tags
-
-" gutentags 搜索工程目录的标志，碰到这些文件/目录名就停止向上一级目录递归
-let g:gutentags_project_root = ['.root', '.svn', '.git', '.hg', '.project']
-
-" 所生成的数据文件的名称
-let g:gutentags_ctags_tagfile = '.tags'
-
-" 将自动生成的 tags 文件全部放入 ~/.cache/tags 目录中，避免污染工程目录
-let s:vim_tags = expand('~/.cache/tags')
-let g:gutentags_cache_dir = s:vim_tags
-
-" 配置 ctags 的参数
-let g:gutentags_ctags_extra_args = ['--fields=+niazS', '--extra=+q']
-let g:gutentags_ctags_extra_args += ['--c++-kinds=+px']
-let g:gutentags_ctags_extra_args += ['--c-kinds=+px']
-
-" 检测 ~/.cache/tags 不存在就新建
-if !isdirectory(s:vim_tags)
-   silent! call mkdir(s:vim_tags, 'p')
-endif
-
-"----------------
-"- rainbow
-"----------------
-let g:rainbow_active=1
-
-"----------------
-"- ale
-"----------------
-"let g:ale_linters = {
-"\  'c':['cppcheck'],
-"\}
-" 始终显示提示侧栏
-let g:ale_sign_column_always=1
-" 高亮错误地点
-let g:ale_set_highlights=1
-" 自定义error和warning图标
-" 😢😡
-let g:ale_sign_error='✗'
-let g:ale_sign_warning='?'
-let g:ale_lint_on_text_changed='normal'
-let g:ale_lint_on_insert_leave=1
-let g:ale_c_gcc_options='-Wall -O2 -std=c99'
-let g:ale_cpp_gcc_options='-Wall -O2 -std=c++11'
-highlight clear ALEErrorSign
-highlight clear ALEWarningSign
-nnoremap sp <Plug>(ale_previous_wrap)
-nnoremap sn <Plug>(ale_next_wrap)
-
-"----------------
-"- git gutter
-"----------------
-nnoremap <leader>ggl :GitGutterLineHighlightsToggle<cr>
-nnoremap <leader>ggs :GitGutterSignsToggle<cr>
-nnoremap <leader>gg  :GitGutterToggle<cr>
-" 默认的快捷键
-" nmap ]c <Plug>GitGutterNextHunk
-" nmap [c <Plug>GitGutterPrevHunk
-" nmap <leader>hs <Plug>GitGutterStageHunk
-" nmap <leader>hu <Plug>GitGutterUndoHunk
-" nmap <leader>hp <Plug>GitGutterPreviewHunk
-
-"----------------
-"- leaderf
-"----------------
-nnoremap <leader>fu :LeaderfFunction<cr>
-
-"----------------
-"- youcompleteme
-"----------------
-let g:ycm_semantic_triggers = {
-            \ "c,cpp,python,java,go,erlang,perl":['re!\w{2}'],
-            \ "cs,lua,javascript":['re!\w{2}'],
-            \ }
-
-"================================
 " 主题
 "================================
 syntax enable
@@ -272,11 +153,14 @@ nnoremap _ :resize -1<cr>
 " 自动加载vimrc
 autocmd! bufwritepost vimrc source $MYVIMRC
 
-noremap <leader>config :e! $MYVIMRC<cr>
-noremap <leader>so :source $MYVIMRC<cr>
+noremap <leader>evv :execute 'e ' . g:file_vimrc<cr>
+noremap <leader>evl :execute 'e ' . g:file_vimrc_local<cr>
+noremap <leader>evp :execute 'e ' . g:file_vimrc_plug<cr>
+noremap <leader>config :e $VIMRC<cr>
+noremap <leader>so  :execute 'source ' . g:file_vimrc<cr>
 
 " 快速选中
-nnoremap <space> viwg~
+nnoremap <space> viw
 
 " 
 nnoremap <silent> n  nzz
@@ -313,11 +197,14 @@ nnoremap <silent> <leader>7  :tabn 7<cr>
 nnoremap <silent> <leader>8  :tabn 8<cr>
 nnoremap <silent> <leader>9  :tabn 9<cr>
 
-
-
 " 加载 .vimrc.local 
-if filereadable(expand('~/.vimrc.local'))
-    source ~/.vimrc.local
+if filereadable(expand(g:file_vimrc_local))
+    execute 'source ' . g:file_vimrc_local
+end
+
+" 加载 .vimrc.plug
+if load_plug && filereadable(expand(g:file_vimrc_plug))
+    execute 'source ' . g:file_vimrc_plug
 end
 
 
